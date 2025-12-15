@@ -5,16 +5,16 @@ interface AuthState {
    user: null | { id: number; email: string; username: string };
 }
 
-const initialState = {
+const initialState: AuthState = {
    isAuthenticated: false,
    user: null,
-} satisfies AuthState as AuthState;
+};
 
 const authState = createSlice({
    name: 'authentication',
    initialState,
    reducers: {
-      login(state) {
+      login: (state) => {
          state.isAuthenticated = true;
          state.user = {
             id: 1,
@@ -22,7 +22,7 @@ const authState = createSlice({
             username: 'basic',
          };
       },
-      logout(state) {
+      logout: (state) => {
          state.isAuthenticated = false;
          state.user = null;
       },

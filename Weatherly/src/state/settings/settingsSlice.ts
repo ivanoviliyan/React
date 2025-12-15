@@ -4,13 +4,13 @@ interface SettingsState {
    metric: 'C' | 'F';
 }
 
-const initialState = { metric: 'C' } satisfies SettingsState as SettingsState;
+const initialState: SettingsState = { metric: 'C' };
 
 const settingsState = createSlice({
    name: 'settings',
    initialState,
    reducers: {
-      change(state) {
+      change: (state) => {
          if (state.metric === 'C') {
             state.metric = 'F';
          } else {
@@ -20,5 +20,5 @@ const settingsState = createSlice({
    },
 });
 
-export const {change} = settingsState.actions;
+export const { change } = settingsState.actions;
 export default settingsState.reducer;

@@ -5,18 +5,18 @@ interface FavoritesSlice {
    cities: string[];
 }
 
-const initialState = {
+const initialState: FavoritesSlice = {
    cities: [],
-} satisfies FavoritesSlice as FavoritesSlice;
+};
 
 const authState = createSlice({
    name: 'favorites',
    initialState,
    reducers: {
-      addCity(state, action: PayloadAction<string>) {
+      addCity: (state, action: PayloadAction<string>) => {
          state.cities.push(action.payload);
       },
-      removeCity(state, action: PayloadAction<string>) {
+      removeCity: (state, action: PayloadAction<string>) => {
          state.cities = state.cities.filter((city) => city !== action.payload);
       },
    },

@@ -23,20 +23,20 @@ const weatherSlice = createSlice({
    name: 'weather',
    initialState,
    reducers: {
-      fetchStart(state) {
+      fetchStart: (state) => {
          state.loading = true;
          state.error = null;
       },
-      fetchSuccess(state, action: PayloadAction<WeatherData>) {
+      fetchSuccess: (state, action: PayloadAction<WeatherData>) => {
          state.loading = false;
          state.data = action.payload;
          state.error = null;
       },
-      fetchError(state, action: PayloadAction<string>) {
+      fetchError: (state, action: PayloadAction<string>) => {
          state.loading = false;
          state.error = action.payload;
       },
-      clearWeather(state) {
+      clearWeather: (state) => {
          state.data = null;
          state.loading = false;
          state.error = null;
