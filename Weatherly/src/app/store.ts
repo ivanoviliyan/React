@@ -1,15 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../features/auth/authSlice';
-import favoritesReducer from '../features/favorites/favoritesSlice';
-import settingsReducer from '../features/settings/settingsSlice';
-import weatherReducer from '../features/weather/weatherSlice';
+import authSlice from '../features/auth/authSlice';
+import favoritesSlice from '../features/favorites/favoritesSlice';
+import settingsSlice from '../features/settings/settingsSlice';
+import weatherSlice from '../features/weather/weatherSlice';
 
 export const store = configureStore({
    reducer: {
-      auth: authReducer,
-      favorites: favoritesReducer,
-      settings: settingsReducer,
-      weather: weatherReducer,
+      auth: authSlice,
+      favorites: favoritesSlice,
+      settings: settingsSlice,
+      weather: weatherSlice,
    },
 });
 

@@ -9,7 +9,7 @@ const initialState: FavoritesSlice = {
    cities: [],
 };
 
-const authState = createSlice({
+const favoritesState = createSlice({
    name: 'favorites',
    initialState,
    reducers: {
@@ -22,5 +22,5 @@ const authState = createSlice({
    },
 });
 
-export const { addCity, removeCity } = authState.actions;
-export default authState.reducer;
+export const { addCity, removeCity } = favoritesState.actions;
+export default favoritesState.reducer;
