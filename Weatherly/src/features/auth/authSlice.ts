@@ -7,7 +7,11 @@ interface AuthState {
 
 const initialState: AuthState = {
    isAuthenticated: false,
-   user: null,
+   user: {
+      id: 1,
+      email: 'test_user@abv.bg',
+      username: 'han4u',
+   },
 };
 
 const authState = createSlice({

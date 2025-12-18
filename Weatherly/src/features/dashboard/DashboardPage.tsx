@@ -5,12 +5,14 @@ import WeatherResult from '../../components/WeatherResult';
 import WeatherCard from '../../components/WeatherCard';
 import { addCity } from '../favorites/favoritesSlice';
 import Navigation from '../../components/Navigation/Navigation';
+import styles from './Dashboard.module.css';
 
 const DashboardPage = () => {
    const [cityValue, setCityValue] = useState<string>('');
    const dispatch = useAppDispatch();
    const { data, loading, error } = useAppSelector((state) => state.weather);
    const cities = useAppSelector((state) => state.favorites.cities);
+   const user = useAppSelector((state) => state.auth.user);
 
    useEffect(() => {
       if (cities.length === 0) return;
@@ -49,26 +51,31 @@ const DashboardPage = () => {
    return (
       <>
          <Navigation />
-         <p>Dashboard</p>
+         <p className={styles.header}>
+            {user ? `👋🏻 ${user.username}` : 'Welcome to Weatherly'}
+         </p>
+
          <form onSubmit={handleSubmit}>
-            <input
-               type='text'
-               value={cityValue}
-               onChange={(e) => setCityValue(e.target.value)}
-               placeholder='Enter city'
-            />
-            <button type='submit' disabled={!cityValue.trim() || loading}>
-               {loading ? 'Loading...' : 'Load Weather'}
-            </button>
+            <section className={styles.search}>
+               <input
+                  type='text'
+                  value={cityValue}
+                  onChange={(e) => setCityValue(e.target.value)}
+                  placeholder='Enter city'
+               />
+               <button type='submit' disabled={!cityValue.trim() || loading}>
+                  {loading ? 'Loading...' : 'Load Weather'}
+               </button>
+            </section>
             <WeatherResult data={data} loading={loading} error={error} />
-            {data ? (
+            {data && (
                <button
                   onClick={handleAddToFavorites}
                   disabled={isCityAlreadyAdded()}
                >
                   Add {data.city} to favorites
                </button>
-            ) : null}
+            )}
          </form>
 
          <div className='favorites'>
