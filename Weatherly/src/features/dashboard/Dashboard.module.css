@@ -1,18 +1,49 @@
-.header {
-   font-size: 3rem;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   padding: 1rem 0 1rem 0;
-   background-color: #00a8e8;
-   color: white;
+.page {
+   max-width: 1600px;
+   margin-inline: auto;
+   padding: 0 1rem;
+
+   form {
+      background-color: #007ea7;
+      padding: 1rem;
+      .header {
+         font-size: 2rem;
+         text-align: center;
+         margin-block: 1.5rem;
+         color: white;
+         font-weight: bold;
+      }
+   }
 }
 
 .search {
    display: flex;
+   flex-wrap: wrap;
+   gap: 1rem;
+   justify-content: center;
+}
+
+.weatherResult {
+   margin: 1rem 0;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
    justify-content: center;
    align-items: center;
+   gap: 1rem;
+   padding: 2rem 1rem;
+
+   background-color: #003459;
+
+   button {
+      max-width: 40%;
+      background-color: #007ea7;
+   }
+}
+
+.favorites {
+   display: flex;
    gap: 0.5rem;
-   padding: 1rem 0 1rem 0;
-   background-color: #007ea7;
+   background-color: white;
+   flex-wrap: wrap;
 }

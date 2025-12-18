@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { fetchWeatherByCity } from '../weather/weatherSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import WeatherResult from '../../components/WeatherResult';
-import WeatherCard from '../../components/WeatherCard';
+import WeatherResult from '../../components/WeatherResult/WeatherResult';
+import WeatherCard from '../../components/WeatherCard/WeatherCard';
 import { addCity } from '../favorites/favoritesSlice';
 import Navigation from '../../components/Navigation/Navigation';
 import styles from './Dashboard.module.css';
@@ -21,7 +21,7 @@ const DashboardPage = () => {
          cities.forEach((weather) => {
             dispatch(fetchWeatherByCity(weather.city));
          });
-      }, 5 * 60 * 1000);
+      }, 1 * 60 * 1000);
 
       return () => clearInterval(interval);
    }, [cities, dispatch]);
@@ -50,44 +50,49 @@ const DashboardPage = () => {
 
    return (
       <>
-         <Navigation />
-         <p className={styles.header}>
-            {user ? `👋🏻 ${user.username}` : 'Welcome to Weatherly'}
-         </p>
-
-         <form onSubmit={handleSubmit}>
-            <section className={styles.search}>
-               <input
-                  type='text'
-                  value={cityValue}
-                  onChange={(e) => setCityValue(e.target.value)}
-                  placeholder='Enter city'
-               />
-               <button type='submit' disabled={!cityValue.trim() || loading}>
-                  {loading ? 'Loading...' : 'Load Weather'}
-               </button>
-            </section>
-            <WeatherResult data={data} loading={loading} error={error} />
+         <section className={styles.page}>
+            <Navigation />
+            <form onSubmit={handleSubmit} className={styles.form}>
+               <p className={styles.header}>
+                  {user ? `👋🏻 ${user.username}` : 'Welcome to Weatherly'}
+               </p>
+               <section className={styles.search}>
+                  <input
+                     type='text'
+                     value={cityValue}
+                     onChange={(e) => setCityValue(e.target.value)}
+                     placeholder='Enter city'
+                  />
+                  <button type='submit' disabled={!cityValue.trim() || loading}>
+                     {loading ? 'Loading...' : 'Load Weather'}
+                  </button>
+               </section>
+            </form>
             {data && (
-               <button
-                  onClick={handleAddToFavorites}
-                  disabled={isCityAlreadyAdded()}
-               >
-                  Add {data.city} to favorites
-               </button>
+               <section className={styles.weatherResult}>
+                  <WeatherResult data={data} loading={loading} error={error} />
+                  {data && (
+                     <button
+                        onClick={handleAddToFavorites}
+                        disabled={isCityAlreadyAdded()}
+                     >
+                        Add {data.city} to favorites
+                     </button>
+                  )}
+               </section>
             )}
-         </form>
-
-         <div className='favorites'>
-            {cities.map((weather) => (
-               <WeatherCard
-                  key={weather.city}
-                  city={weather.city}
-                  tempC={weather.tempC}
-                  tempF={weather.tempF}
-               />
-            ))}
-         </div>
+            {cities.length ? <h1>Favorites</h1> : null}
+            <section className={styles.favorites}>
+               {cities.map((weather) => (
+                  <WeatherCard
+                     key={weather.city}
+                     city={weather.city}
+                     tempC={weather.tempC}
+                     tempF={weather.tempF}
+                  />
+               ))}
+            </section>
+         </section>
       </>
    );
 };

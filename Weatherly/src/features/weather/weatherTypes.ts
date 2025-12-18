@@ -30,3 +30,9 @@ export interface WeatherApiResponse {
       };
    };
 }
+
+export const WeatherEmoji = {
+   Sunny: '☀️',
+   PartlyCloudy: '⛅',
+   Snow: '❄️',
+} as const;

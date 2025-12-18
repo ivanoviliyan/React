@@ -8,6 +8,7 @@
    align-items: center;
    gap: 1rem;
    list-style: none;
+   font-size: 1.4rem;
 }
 
 .list li:first-child {
