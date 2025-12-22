@@ -1,8 +1,10 @@
 .weatherCard {
+   width: 100px;
    display: flex;
    flex-direction: column;
    gap: 1rem;
-   align-items: flex-start;
+   align-items: center;
+   justify-content: center;
    padding: 1rem 0 1rem 0;
    color: black;
    font-weight: bold;
@@ -10,7 +12,12 @@
    padding: 0.8rem;
    margin: 0.5rem;
 
-   min-width: 400px;
+   min-width: 300px;
    border-radius: 1rem;
-   box-shadow: var(--card-shadow);
+
+   button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
 }

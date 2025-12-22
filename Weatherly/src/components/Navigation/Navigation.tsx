@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../app/hooks';
 import styles from './Navigation.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+   faUser,
+   faArrowRightToBracket,
+   faCloudBolt,
+} from '@fortawesome/free-solid-svg-icons';
 
 const Navigation = () => {
    const isAuthenticated = useAppSelector((state) =>
@@ -12,17 +18,22 @@ const Navigation = () => {
          <nav className={styles.nav}>
             <ul className={styles.list}>
                <li className={styles.link}>
-                  <Link to={'/'}>☀️ Weatherly</Link>
-               </li>
-               <li className={styles.link}>
-                  <Link to={'/settings'}>⚙️ Settings</Link>
+                  <Link to={'/'}>
+                     <FontAwesomeIcon icon={faCloudBolt} /> Weatherly
+                  </Link>
                </li>
                {!isAuthenticated && (
                   <li className={styles.link}>
-                     <Link to={'/auth'}>👤 Login / Register</Link>
+                     <Link to={'/auth'}>
+                        <FontAwesomeIcon icon={faUser} />
+                     </Link>
                   </li>
                )}
-               {isAuthenticated && <li className={styles.link}>Logout</li>}
+               {isAuthenticated && (
+                  <li className={styles.link}>
+                     <FontAwesomeIcon icon={faArrowRightToBracket} />
+                  </li>
+               )}
             </ul>
          </nav>
       </header>

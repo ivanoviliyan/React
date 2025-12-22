@@ -29,6 +29,29 @@ body {
    background-color: var(--prime-bg);
 }
 
+.page {
+   max-width: 1600px;
+   margin-inline: auto;
+   padding: 0 1rem;
+
+   form {
+      background-color: var(--sec-bg);
+      padding: 1rem;
+      .header {
+         font-size: 2rem;
+         text-align: center;
+         margin-block: 1.5rem;
+         color: white;
+         font-weight: bold;
+      }
+   }
+}
+.page {
+   max-width: 1600px;
+   margin-inline: auto;
+   padding: 0 1rem;
+}
+
 button {
    background-color: var(--button);
    cursor: pointer;
